@@ -1,0 +1,13 @@
+!.gitignore
+/bin/
+/prerequisites/c-libp2p/
+/prerequisites/c-multiaddr/
+/prerequisites/c-multihash/
+/prerequisites/c-protobuf/
+/prerequisites/lmbd/
+/prerequisites/botan/
+/prerequisites/bild/
+/prerequisites/c-ipfs/
+/prerequisites/qssh/
+/prerequisites/QtWebApp/
+doc/html/
