@@ -1,3 +1,0 @@
-[submodule "prerequisites/even-cpp"]
-	path = prerequisites/even-cpp
-	url = https://github.com/evenfound/even-cpp.git
