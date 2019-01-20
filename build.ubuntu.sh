@@ -7,9 +7,9 @@ cd prerequisites/build
 cmake ..
 make
 cd -
-rm -rf even-boffin/build 2> /dev/null
-mkdir even-boffin/build
-cd even-boffin/build 
-cmake .. 
-make
-cd -
+#rm -rf build 2> /dev/null
+#mkdir build
+#cd build 
+#cmake .. 
+#make
+#cd -

@@ -11,6 +11,7 @@ if(WIN32 AND ${CMAKE_SIZEOF_VOID_P} MATCHES 8)
     find_program(MAKE_EXECUTABLE NAMES mingw32-make.exe PATHS ${QTROOTS})
     set(MKSPEC win32-g++)
     set(FILENAME ${PROJECT_NAME}.exe)
+    set(BINDIR ${CMAKE_CURRENT_BINARY_DIR}/../bin)
 endif()
 if(UNIX AND ${CMAKE_SIZEOF_VOID_P} MATCHES 8)
     # Hardcode a location for a QT toolkit compiled for Win64.  By overriding QT_QMAKE, all the rest is found
@@ -19,6 +20,7 @@ if(UNIX AND ${CMAKE_SIZEOF_VOID_P} MATCHES 8)
     set(MAKE_EXECUTABLE make)
     set(MKSPEC linux-g++-64)
     set(FILENAME ${PROJECT_NAME})
+    set(BINDIR ${CMAKE_CURRENT_BINARY_DIR}/../bin)
 endif()
 find_package(Qt5 COMPONENTS Core Network)
 
@@ -27,6 +29,8 @@ set(EXEC_FILE ${CMAKE_CURRENT_BINARY_DIR}/QtEvenBoffin/${FILENAME})
 # how to build the result of the library
 set(EXTRA_QMAKE_FLAGS -spec ${MKSPEC} "CONFIG+=debug" "QMAKE_CXXFLAGS=-Wno-switch -Wno-attributes -Wno-ignored-qualifiers -fpermissive -std=c++14" DESTDIR=${CMAKE_CURRENT_BINARY_DIR}/QtEvenBoffin OBJECTS_DIR=QtEvenBoffin/.objs MOC_DIR=QtEvenBoffin/.moc RCC_DIR=QtEvenBoffin/.rcc UI_DIR=QtEvenBoffin/.ui)
 add_custom_command(OUTPUT  ${EXEC_FILE} 
+    COMMAND mkdir 
+    ARGS -p ${BINDIR}
     COMMAND ${QT_QMAKE_EXECUTABLE}
     ARGS ${CMAKE_CURRENT_SOURCE_DIR}/even-boffin.pro ${EXTRA_QMAKE_FLAGS}
     COMMAND cd
@@ -38,9 +42,8 @@ add_custom_command(OUTPUT  ${EXEC_FILE}
 
 # create a target out of the library compilation result
 add_custom_target(${PROJECT_NAME}_target ALL
-    COMMAND mkdir 
-    ARGS -p ../bin
-    COMMAND cp -f ${CMAKE_CURRENT_BINARY_DIR}/QtEvenBoffin/${FILENAME} ${CMAKE_CURRENT_BINARY_DIR}/../bin
+    COMMAND cp -f ${CMAKE_CURRENT_BINARY_DIR}/QtEvenBoffin/${FILENAME} ${BINDIR}
+    COMMAND windeployqt ${BINDIR}
     DEPENDS ${EXEC_FILE})
 
 # create an library target out of the library compilation result

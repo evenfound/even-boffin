@@ -26,7 +26,7 @@ SOURCES += ./src/main.cpp \
             ./src/Node.cxx \
             ./src/NodeNetwork.cxx\
             ./src/Network.cxx\
-            ./src\BoffinApp.cxx \
+            ./src/BoffinApp.cxx \
             ./prerequisites/even-cpp/common/src/core/Value.cxx\
             ./prerequisites/even-cpp/common/src/core/Controller.cxx \
             ./prerequisites/even-cpp/common/src/core/Config.cxx \
