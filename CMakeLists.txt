@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.8)
+    cmake_minimum_required(VERSION 2.8)
 
 # even-boffin
 project(even-boffin)
@@ -24,6 +24,7 @@ if(UNIX AND ${CMAKE_SIZEOF_VOID_P} MATCHES 8)
 endif()
 find_package(Qt5 COMPONENTS Core Network)
 
+set(LIBDIR ${CMAKE_CURRENT_BINARY_DIR}/../lib)
 set(EXEC_FILE ${CMAKE_CURRENT_BINARY_DIR}/QtEvenBoffin/${FILENAME})
 #SET(LIB_HEADER_FOLDER ${CMAKE_CURRENT_SOURCE_DIR}/QtWebApp/QtWebApp)
 # how to build the result of the library
@@ -41,10 +42,18 @@ add_custom_command(OUTPUT  ${EXEC_FILE}
 )
 
 # create a target out of the library compilation result
+if(WIN32 AND ${CMAKE_SIZEOF_VOID_P} MATCHES 8)
 add_custom_target(${PROJECT_NAME}_target ALL
     COMMAND cp -f ${CMAKE_CURRENT_BINARY_DIR}/QtEvenBoffin/${FILENAME} ${BINDIR}
-    COMMAND windeployqt ${BINDIR}
     DEPENDS ${EXEC_FILE})
+endif()
+if(UNIX AND ${CMAKE_SIZEOF_VOID_P} MATCHES 8)
+add_custom_target(${PROJECT_NAME}_target ALL
+    COMMAND cp -f ${CMAKE_CURRENT_BINARY_DIR}/QtEvenBoffin/${FILENAME} ${BINDIR}
+#    COMMAND cp ${LIBDIR}/run.sh ${BINDIR}/${FILENAME}.sh
+#    COMMAND chmod +x ${BINDIR}/${FILENAME}.sh 
+    DEPENDS ${EXEC_FILE})
+endif()
 
 # create an library target out of the library compilation result
 add_executable(${PROJECT_NAME} IMPORTED GLOBAL)

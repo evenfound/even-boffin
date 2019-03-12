@@ -20,7 +20,9 @@
 #include <QDirIterator>
 #include <QCryptographicHash>
 #include <QTextCodec>
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 12, 0))
 #include <QRandomGenerator>
+#endif
 
 using namespace std;
 using namespace even;

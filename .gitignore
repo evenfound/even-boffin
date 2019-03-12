@@ -2,3 +2,5 @@ build/
 bin/
 ipfs/
 .vscode
+*.user
+*.save
