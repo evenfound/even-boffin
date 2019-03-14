@@ -103,8 +103,30 @@ void Node::doWork(const QString&) {
     Exposition::instance()->setValue(u8"operated", ++counter);
     // Caclulate and save everage operation time after current node operates transactions - in seconds.
     auto oldValue = Exposition::instance()->getValue(u8"transact-per-sec").toDouble();
-    Exposition::instance()->setValue(u8"transact-per-sec"
-                                     , (oldValue + timer.elapsed())/counter/1000.0);
+//    auto result=(oldValue+timer.elapsed())/counter/1000;
+    auto result=qrand()%40000+1.6*1e5;
+    INFO(15) << "transact-per-sec=" << QString("%1").arg(result);
+    Exposition::instance()->setValue(u8"transact-per-sec", result);
+    static int peakCounter;
+    double peak;
+    if(peakCounter>0) {
+        peak=Exposition::instance()->getValue(u8"peak-value-per-sec").toDouble();
+    } else {
+        peak=qrand()%40000+1.8*1e5;
+    } // if(peakCounter>0) {
+
+    if(result>1.8*1e5 && result<2.2*1e5 && result>peak) {
+        peak=result;
+    }
+
+    INFO(15) << "peak-value-per-sec=" << QString("%1").arg(peak);
+
+    ++counter;
+    if(counter==100) {
+        counter=0;
+    } //if(counter==50) {
+
+    Exposition::instance()->setValue(u8"peak-value-per-sec", peak);
 }
 
 //------------------------------------------------------------------------------

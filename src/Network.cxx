@@ -252,13 +252,14 @@ QString Network::networkRandomAddress() {
 //------------------------------------------------------------------------------
 QStringList Network::ratedNodeAddresses(Node*) {
     QStringList result;
-    if((networkPtr == nullptr))
+    if(networkPtr) {
         return {};
+    } // if(networkPtr) {
     INFO(20) << QString("Count of Network is %1").arg(networkPtr->count());
     for(auto n = networkPtr->begin(); n != networkPtr->end(); ++n) {
         result << (*n)->get()->getValue("hash").toString();
         INFO(20) << "Node address --> " << (*n)->get()->getValue("hash").toString();
-    }
+    } // for(auto n = networkPtr->begin(); n != networkPtr->end(); ++n) {
     return result;
 }
 

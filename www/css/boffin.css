@@ -72,6 +72,12 @@ footer p {
 
 }
 
+@media (min-width: 576px) {
+    .jumbotron {
+        padding: 5rem 2rem;
+    }
+}
+
 #jumbo-display {
     position: absolute;
     display: block;
