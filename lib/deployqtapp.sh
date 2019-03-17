@@ -70,10 +70,12 @@ done
 echo "Copying local dependencies..."
 cp ./lib* $libsdir
 
+qtdir=/home/zipper/Qt5.12.0
+qtsubdir=/home/zipper/Qt5.12.0/5.12.0
 # Create the fonts directory and copy fonts across. You
 # will obviously need to assign the directory path leading
 # to your fonts to "fontdir", e.g. /home/you/qt/lib/fonts
-qtfontsdir=/home/zipper/Qt5.12.0/Tools/QtCreator/share/qtcreator/fonts
+qtfontsdir=$qtdir/Tools/QtCreator/share/qtcreator/fonts
 fontsdir=$PWD/$tardir/fonts
 mkdir $fontsdir
 echo "Created fonts directory: "$fontsdir" copying fonts..."
@@ -87,8 +89,8 @@ echo "Created etc directory: "$taretcdir" copying all from etc..."
 cp -r $etcdir/* $taretcdir
 
 # You will need to change this to point to wherever libqxcb.so lives on your PC.
-qtplatformplugin=/home/zipper/Qt5.12.0/5.12.0/gcc_64/plugins/platforms/libqxcb.so
-qtplatformplugins=/home/zipper/Qt5.12.0/5.12.0/gcc_64/plugins/platforms/*.so*
+qtplatformplugin=$qtsubdir/gcc_64/plugins/platforms/libqxcb.so
+qtplatformplugins=$qtsubdir/gcc_64/plugins/platforms/*.so*
 qtplatformplugindir=$tardir/platforms
 mkdir $qtplatformplugindir
 echo "Created platforms directory: "$qtplatformplugindir
@@ -175,7 +177,7 @@ chmod u+x $fixscript
 
 # Edit this script to add whatever other additional plugins your application
 # requires.
-qtsqliteplugin=/home/zipper/Qt5.12.0/Tools/QtCreator/lib/Qt/plugins/sqldrivers/libqsqlite.so
+qtsqliteplugin=$qtdir/Tools/QtCreator/lib/Qt/plugins/sqldrivers/libqsqlite.so
 qtsqliteplugindir=$tardir/sqldrivers
 mkdir $qtsqliteplugindir
 echo "Created sql driver directory: "$qtsqliteplugindir
