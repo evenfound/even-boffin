@@ -27,18 +27,18 @@ Node::Node(std::initializer_list<Value> config_)
 {
     INFO(20) << "create " << getValue(u8"object").toString();
     Node::nodeCount++;
-    addValue(u8"#",{Node::nodeCount}, u8"Node index", Value::Property());
+    addValue(u8"#",{Node::nodeCount}, u8"Node index");
 
     // Position Node in Network topology.
-    addValue(u8"xpos", {0.0}, u8"x position in topology", Value::Property());
-    addValue(u8"ypos", {0.0}, u8"y position in topology", Value::Property()) ;
+    addValue(u8"xpos", {0.0}, u8"x position in topology");
+    addValue(u8"ypos", {0.0}, u8"y position in topology") ;
 
     // Edges, that constrains new triangle
     // in developing topology process.
-    addValue(u8"d1", {0.0}, u8"--", Value::Property());
-    addValue(u8"d2", {0.0}, u8"--", Value::Property());
+    addValue(u8"d1", {0.0}, u8"--");
+    addValue(u8"d2", {0.0}, u8"--");
 
-    addValue(u8"balance", {1.25}, u8"Balance of wallet accounts", Value::Property());
+    addValue(u8"balance", {1.25}, u8"Balance of wallet accounts");
 
     for (auto &v : config_)
         addValue(v);
@@ -46,7 +46,7 @@ Node::Node(std::initializer_list<Value> config_)
     QString root = getValue(u8"path").toString();
     if(!getValue(u8"hash").isValid()) {
         _hash.create();
-        addValue(u8"hash", _hash.serialize(), u8"Public key(test)", Value::Property());
+        addValue(u8"hash", _hash.serialize(), u8"Public key(test)");
         root +=  "/" + _hash.serialize();
     } else {
         _hash.fromString(getValue(u8"hash").toString());

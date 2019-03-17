@@ -90,35 +90,28 @@ bool Network::create() {
     network->beginGroup("network");
     addValue(u8"network_size"
              , network->value("network_size", 25)
-             , u8"Node count"
-             , Value::Property());
+             , u8"Node count");
     addValue(u8"master_nodes"
              , network->value("master_nodes", 10)
-             , u8"Percent of master nodes"
-             , Value::Property());
+             , u8"Percent of master nodes");
     addValue(u8"tick"
              , network->value("tick", 1)
-             , u8"Modeling timer tick (usec.)"
-             , Value::Property());
+             , u8"Modeling timer tick (usec.)");
     addValue(u8"master_cons"
              , network->value("master_cons", 22)
-             , u8"Master node consensus (perc.)"
-             , Value::Property());
+             , u8"Master node consensus (perc.)");
     addValue(u8"consensus"
              , network->value("consensus", 70)
-             , u8"Base consensus (perc.)"
-             , Value::Property());
+             , u8"Base consensus (perc.)");
     addValue(u8"r_distribution"
              , network->value("r_distribution", 58)
-             , u8"Rating distribution (perc.)"
-             , Value::Property());
+             , u8"Rating distribution (perc.)");
 
     QSettings* nodes = new QSettings(configFile, QSettings::IniFormat, QCoreApplication::instance());
     nodes->beginGroup("nodes");
     addValue(u8"path"
              , nodes->value(u8"path", "./ipfs")
-             , u8"Full path to IPFS node storages"
-             , Value::Property());
+             , u8"Full path to IPFS node storages");
 
     INFO(15) << QString("IPFS path is %1...").arg(getValue(u8"path").toString());
 
