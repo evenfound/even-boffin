@@ -1,6 +1,3 @@
-[submodule "prerequisites/QtWebApp"]
-	path = prerequisites/QtWebApp
-	url = https://github.com/samiavasil/QtWebApp
 [submodule "prerequisites/even-cpp"]
 	path = prerequisites/even-cpp
 	url = https://github.com/evenfound/even-cpp.git
