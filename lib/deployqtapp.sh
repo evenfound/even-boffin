@@ -70,8 +70,8 @@ done
 echo "Copying local dependencies..."
 cp ./lib* $libsdir
 
-qtdir=/home/zipper/Qt5.12.0
-qtsubdir=/home/zipper/Qt5.12.0/5.12.0
+qtdir=/home/zipper/Qt5.12.2
+qtsubdir=/home/zipper/Qt5.12.2/5.12.2
 # Create the fonts directory and copy fonts across. You
 # will obviously need to assign the directory path leading
 # to your fonts to "fontdir", e.g. /home/you/qt/lib/fonts
