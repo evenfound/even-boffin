@@ -192,7 +192,7 @@ echo "#!/bin/sh" > $execscript
 echo "export LD_LIBRARY_PATH=\`pwd\`/libs" >> $execscript
 echo "export QT_QPA_FONTDIR=\`pwd\`/fonts" >> $execscript
 echo "export QT_QPA_PLATFORM_PLUGIN_PATH=\`pwd\`/platforms" >> $execscript
-echo "./$executable" >> $execscript
+echo "./$executable -platform offscreen" >> $execscript
 
 # Make executable.
 chmod u+x $execscript

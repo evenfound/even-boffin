@@ -31,7 +31,7 @@ int BoffinApp::exec() {
 
 //------------------------------------------------------------------------------
 bool BoffinApp::handleSignal(int signal) {
-    //std::cout << "Handling signal " << signal << std::endl;
+    std::cout << "Handling signal " << signal << std::endl;
     INFO(10) << QString("Handling signal %1").arg(signal);
     if (isRunning())
     {
